@@ -1,15 +1,22 @@
-package com.mycompany.luiggiestacionamento;
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pessoa {
     private int id;
     private String nome;
     private String fone;
     private String email;
-    private VinculoPessoa vinculo;
+    private VinculoPessoa vinculoPessoa;
+    
+    private List<Veiculo> listaVeiculos;
 
-    Pessoa(int i, String joão, String string, String joaomailcom, VinculoPessoa vinculoPessoa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Pessoa() {
+        listaVeiculos = new ArrayList<>();
     }
+    
+    
 
     public int getId() {
         return id;
@@ -43,13 +50,21 @@ public class Pessoa {
         this.email = email;
     }
 
-    public VinculoPessoa getVinculo() {
-        return vinculo;
+    public VinculoPessoa getVinculoPessoa() {
+        return vinculoPessoa;
     }
 
-    public void setVinculo(VinculoPessoa vinculo) {
-        this.vinculo = vinculo;
+    public void setVinculoPessoa(VinculoPessoa vinculoPessoa) {
+        this.vinculoPessoa = vinculoPessoa;
+    }
+    
+    public void addVeiculo(Veiculo vei){
+        listaVeiculos.add(vei);
     }
 
+    public List<Veiculo> getListaVeiculos() {
+        return listaVeiculos;
+    }
+    
     
 }
