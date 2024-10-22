@@ -1,6 +1,12 @@
 package model;
 
-public class Modelo {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Modelo implements Serializable {
+    @Id
     private int id;
     private String descricao;
     private Marca marca;

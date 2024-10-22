@@ -31,11 +31,22 @@ public class PersistenciaJPA implements InterfaceBD {
     
     @Override
     public void persist(Object o) throws Exception {
-        
+        entity = getEntityManager();
+        entity.getTransaction().begin();
+        entity.persist(o);
+        entity.getTransaction().commit();
     }
     
     @Override
     public void remover(Object o) throws Exception {
         
     }
+    
+    public EntityManager getEntityManager() {
+        if (entity == null || !entity.isOpen()) {
+            entity = factory.createEntityManager();
+        }
+        return entity;
+    }
+    
 }
