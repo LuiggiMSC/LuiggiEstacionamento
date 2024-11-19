@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.io.Serializable;
@@ -24,10 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ManyToAny;
 
-/**
- *
- * @author vanessalagomachado
- */
 @Entity
 @Table(name = "tb_veiculo")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -109,7 +101,7 @@ public class Veiculo implements Serializable {
     public void addMovimentacao(EntradaSaida movimentacao){
         listaMovimentacoes.add(movimentacao);
     }
-//
+
     public Modelo getModelo() {
         return modelo;
     }
@@ -121,15 +113,15 @@ public class Veiculo implements Serializable {
     public Pessoa getProprietario() {
         return proprietario;
     }
-//
+
     public void setProprietario(Pessoa proprietario) {
         this.proprietario = proprietario;
     }
-//
+
     public List<EntradaSaida> getListaMovimentacoes() {
         return listaMovimentacoes;
     }
-//    
+   
     
     
 }
