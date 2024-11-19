@@ -5,6 +5,8 @@
 package br.edu.ifsul.cc.lpoo.estacionamentoifsul.view;
 
 import br.edu.ifsul.cc.lpoo.estacionamentoifsul.lpoo_sistemaestacionamentoifsul.dao.PersistenciaJPA;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -24,6 +26,7 @@ public class TelaPessoa extends javax.swing.JFrame {
 
         jpa = new PersistenciaJPA();
         carregarPessoasCadastradas();
+
     }
 
     /**
@@ -56,7 +59,7 @@ public class TelaPessoa extends javax.swing.JFrame {
 
         lblBuscaNome.setText("Nome: ");
 
-        cmbVinculoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VISITANTE", "ALUNO", "SERVIDOR", "TERCEIRIZADO" }));
+        cmbVinculoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(VinculoPessoa.values()));
         cmbVinculoPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbVinculoPessoaActionPerformed(evt);
@@ -68,6 +71,11 @@ public class TelaPessoa extends javax.swing.JFrame {
         txtBuscaNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscaNomeActionPerformed(evt);
+            }
+        });
+        txtBuscaNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscaNomeKeyReleased(evt);
             }
         });
 
@@ -203,7 +211,7 @@ public class TelaPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovaPessoaActionPerformed
 
     private void txtBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaNomeActionPerformed
-        // TODO add your handling code here:
+        buscarPessoas(txtBuscaNome.getText());
     }//GEN-LAST:event_txtBuscaNomeActionPerformed
 
     private void btnEditarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPessoaActionPerformed
@@ -237,13 +245,13 @@ public class TelaPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverPessoaActionPerformed
 
     private void cmbVinculoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVinculoPessoaActionPerformed
-       cmbVinculoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
-            VinculoPessoa.VISITANTE.toString(),
-            VinculoPessoa.ALUNO.toString(),
-            VinculoPessoa.SERVIDOR.toString(),
-            VinculoPessoa.TERCEIRIZADO.toString()
-        }));
+        VinculoPessoa vinculoSelecionado = (VinculoPessoa) cmbVinculoPessoa.getSelectedItem();
+        buscarPessoasPorVinculo(vinculoSelecionado);
     }//GEN-LAST:event_cmbVinculoPessoaActionPerformed
+
+    private void txtBuscaNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaNomeKeyReleased
+        buscarPessoas(txtBuscaNome.getText());
+    }//GEN-LAST:event_txtBuscaNomeKeyReleased
 
     /**
      * @param args the command line arguments
@@ -298,7 +306,7 @@ public class TelaPessoa extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarPessoa;
     private javax.swing.JButton btnNovaPessoa;
     private javax.swing.JButton btnRemoverPessoa;
-    private javax.swing.JComboBox<String> cmbVinculoPessoa;
+    private javax.swing.JComboBox<VinculoPessoa> cmbVinculoPessoa;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBuscaNome;
     private javax.swing.JLabel lblBuscaVinculo;
@@ -306,4 +314,35 @@ public class TelaPessoa extends javax.swing.JFrame {
     private javax.swing.JList<Pessoa> lstPessoas;
     private javax.swing.JTextField txtBuscaNome;
     // End of variables declaration//GEN-END:variables
+
+    public void buscarPessoas(String termo) {
+        jpa.conexaoAberta();
+        
+        DefaultListModel modeloLista = new DefaultListModel();
+        
+        for(Pessoa pessoa : jpa.getPessoas()) {
+            if (pessoa.getNome().toLowerCase().contains(termo.toLowerCase())) {
+                modeloLista.addElement(pessoa);
+            }
+        }
+        
+        lstPessoas.setModel(modeloLista);
+        
+        jpa.fecharConexao();
+    }
+
+    private void buscarPessoasPorVinculo(VinculoPessoa vinculoSelecionado) {
+        jpa.conexaoAberta();
+        
+        DefaultListModel modeloLista = new DefaultListModel();
+        
+        for (Pessoa pessoa : jpa.getPessoas()) {
+            if (pessoa.getVinculoPessoa() == vinculoSelecionado) {
+                modeloLista.addElement(pessoa);
+            }
+        }
+        lstPessoas.setModel(modeloLista);
+        jpa.fecharConexao();
+    }
+
 }

@@ -103,20 +103,15 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbVinculoPessoa">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="VISITANTE"/>
-                <StringItem index="1" value="ALUNO"/>
-                <StringItem index="2" value="SERVIDOR"/>
-                <StringItem index="3" value="TERCEIRIZADO"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(VinculoPessoa.values())" type="code"/>
             </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbVinculoPessoaActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;VinculoPessoa&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblBuscaVinculo">
@@ -127,6 +122,7 @@
         <Component class="javax.swing.JTextField" name="txtBuscaNome">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBuscaNomeActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscaNomeKeyReleased"/>
           </Events>
         </Component>
       </SubComponents>
