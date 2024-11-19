@@ -201,7 +201,6 @@ public class TelaPessoa extends javax.swing.JFrame {
     private void txtBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaNomeActionPerformed
         String termo = txtBuscaNome.getText();
         VinculoPessoa vinculoSelecionado = (VinculoPessoa) cmbVinculoPessoa.getSelectedItem();
-
         buscarPessoas(termo, vinculoSelecionado);
     }//GEN-LAST:event_txtBuscaNomeActionPerformed
 
@@ -237,14 +236,12 @@ public class TelaPessoa extends javax.swing.JFrame {
     private void cmbVinculoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVinculoPessoaActionPerformed
         String termo = txtBuscaNome.getText();
         VinculoPessoa vinculoSelecionado = (VinculoPessoa) cmbVinculoPessoa.getSelectedItem();
-
         buscarPessoas(termo, vinculoSelecionado);
     }//GEN-LAST:event_cmbVinculoPessoaActionPerformed
 
     private void txtBuscaNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaNomeKeyReleased
         String termo = txtBuscaNome.getText();
         VinculoPessoa vinculoSelecionado = (VinculoPessoa) cmbVinculoPessoa.getSelectedItem();
-
         buscarPessoas(termo, vinculoSelecionado);
     }//GEN-LAST:event_txtBuscaNomeKeyReleased
 
