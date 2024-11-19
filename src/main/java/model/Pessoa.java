@@ -18,39 +18,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author vanessalagomachado
- */
 @Entity
 @Table(name = "tb_pessoa")
 public class Pessoa implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    
+
     @Column(nullable = false, length = 50)
     private String nome;
-    
+
     @Column(length = 20)
     private String fone;
-    
+
     @Column(length = 50)
     private String email;
-    
+
     @Enumerated(EnumType.STRING)
     private VinculoPessoa vinculoPessoa;
-    
-    
+
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
     private List<Veiculo> listaVeiculos;
 
     public Pessoa() {
         listaVeiculos = new ArrayList<>();
     }
-    
-    
 
     public int getId() {
         return id;
@@ -91,14 +84,18 @@ public class Pessoa implements Serializable {
     public void setVinculoPessoa(VinculoPessoa vinculoPessoa) {
         this.vinculoPessoa = vinculoPessoa;
     }
-    
-    public void addVeiculo(Veiculo vei){
+
+    public void addVeiculo(Veiculo vei) {
         listaVeiculos.add(vei);
     }
 
     public List<Veiculo> getListaVeiculos() {
         return listaVeiculos;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return nome + " - " + vinculoPessoa;
+    }
+
 }

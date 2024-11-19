@@ -9,10 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Pessoa;
 
-/**
- *
- * @author vanessalagomachado
- */
 public class TelaCadastroPessoa extends javax.swing.JDialog {
 
     private Pessoa pessoa;
@@ -25,6 +21,10 @@ public class TelaCadastroPessoa extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         jpa = new PersistenciaJPA();
+    }
+
+    TelaCadastroPessoa(TelaPessoa aThis, boolean rootPaneCheckingEnabled, Pessoa selectedPessoa) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

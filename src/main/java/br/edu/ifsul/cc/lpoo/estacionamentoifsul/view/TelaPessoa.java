@@ -8,21 +8,20 @@ import br.edu.ifsul.cc.lpoo.estacionamentoifsul.lpoo_sistemaestacionamentoifsul.
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Pessoa;
+import model.VinculoPessoa;
 
-/**
- *
- * @author vanessalagomachado
- */
 public class TelaPessoa extends javax.swing.JFrame {
+
     PersistenciaJPA jpa;
+
     /**
      * Creates new form TelaPessoa
      */
     public TelaPessoa() {
         initComponents();
-        
-        
+
         jpa = new PersistenciaJPA();
         carregarPessoasCadastradas();
     }
@@ -57,9 +56,20 @@ public class TelaPessoa extends javax.swing.JFrame {
 
         lblBuscaNome.setText("Nome: ");
 
-        cmbVinculoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbVinculoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VISITANTE", "ALUNO", "SERVIDOR", "TERCEIRIZADO" }));
+        cmbVinculoPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVinculoPessoaActionPerformed(evt);
+            }
+        });
 
         lblBuscaVinculo.setText("Vínculo:");
+
+        txtBuscaNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscaNomeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout areaFiltrosLayout = new javax.swing.GroupLayout(areaFiltros);
         areaFiltros.setLayout(areaFiltrosLayout);
@@ -114,8 +124,18 @@ public class TelaPessoa extends javax.swing.JFrame {
         });
 
         btnEditarPessoa.setText("Editar");
+        btnEditarPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarPessoaActionPerformed(evt);
+            }
+        });
 
         btnRemoverPessoa.setText("Remover");
+        btnRemoverPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverPessoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout areaBotoesLayout = new javax.swing.GroupLayout(areaBotoes);
         areaBotoes.setLayout(areaBotoesLayout);
@@ -174,15 +194,56 @@ public class TelaPessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovaPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPessoaActionPerformed
-        TelaCadastroPessoa telaCadastro = 
-                new TelaCadastroPessoa(this, rootPaneCheckingEnabled);
+        TelaCadastroPessoa telaCadastro
+                = new TelaCadastroPessoa(this, rootPaneCheckingEnabled);
         telaCadastro.setVisible(true);
-        
-        
-        
+
         carregarPessoasCadastradas();
-        
+
     }//GEN-LAST:event_btnNovaPessoaActionPerformed
+
+    private void txtBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaNomeActionPerformed
+
+    private void btnEditarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPessoaActionPerformed
+        Pessoa selectedPessoa = lstPessoas.getSelectedValue();
+        if (selectedPessoa != null) {
+            TelaCadastroPessoa telaCadastro = new TelaCadastroPessoa(this, rootPaneCheckingEnabled, selectedPessoa);
+            telaCadastro.setVisible(true);
+        } else {
+            // Handle the case where no person is selected
+            JOptionPane.showMessageDialog(this, "Selecione uma pessoa para editar.");
+        }
+    }//GEN-LAST:event_btnEditarPessoaActionPerformed
+
+    private void btnRemoverPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverPessoaActionPerformed
+        Pessoa selectedPessoa = lstPessoas.getSelectedValue();
+        if (selectedPessoa != null) {
+            int confirmation = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja remover esta pessoa?");
+            if (confirmation == JOptionPane.YES_OPTION) {
+                jpa.conexaoAberta();
+                try {
+                    jpa.remover(selectedPessoa);
+                } catch (Exception ex) {
+                    Logger.getLogger(TelaPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                jpa.fecharConexao();
+                carregarPessoasCadastradas();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma pessoa para remover.");
+        }
+    }//GEN-LAST:event_btnRemoverPessoaActionPerformed
+
+    private void cmbVinculoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVinculoPessoaActionPerformed
+       cmbVinculoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
+            VinculoPessoa.VISITANTE.toString(),
+            VinculoPessoa.ALUNO.toString(),
+            VinculoPessoa.SERVIDOR.toString(),
+            VinculoPessoa.TERCEIRIZADO.toString()
+        }));
+    }//GEN-LAST:event_cmbVinculoPessoaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,18 +279,16 @@ public class TelaPessoa extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void carregarPessoasCadastradas(){
+
+    public void carregarPessoasCadastradas() {
         jpa.conexaoAberta();
-        
-        
+
         DefaultListModel modeloLista = new DefaultListModel();
         modeloLista.addAll(jpa.getPessoas());
         lstPessoas.setModel(modeloLista);
-        
+
         jpa.fecharConexao();
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
