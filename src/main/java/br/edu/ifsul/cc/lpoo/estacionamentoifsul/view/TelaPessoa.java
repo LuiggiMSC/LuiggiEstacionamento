@@ -14,15 +14,13 @@ public class TelaPessoa extends javax.swing.JFrame {
 
     PersistenciaJPA jpa;
 
-
     public TelaPessoa() {
         initComponents();
 
         jpa = new PersistenciaJPA();
         carregarPessoasCadastradas();
-        
-    }
 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -201,7 +199,10 @@ public class TelaPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovaPessoaActionPerformed
 
     private void txtBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaNomeActionPerformed
-        buscarPessoas(txtBuscaNome.getText());
+        String termo = txtBuscaNome.getText();
+        VinculoPessoa vinculoSelecionado = (VinculoPessoa) cmbVinculoPessoa.getSelectedItem();
+
+        buscarPessoas(termo, vinculoSelecionado);
     }//GEN-LAST:event_txtBuscaNomeActionPerformed
 
     private void btnEditarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPessoaActionPerformed
@@ -210,7 +211,6 @@ public class TelaPessoa extends javax.swing.JFrame {
             TelaCadastroPessoa telaCadastro = new TelaCadastroPessoa(this, rootPaneCheckingEnabled, selectedPessoa);
             telaCadastro.setVisible(true);
         } else {
-            // Handle the case where no person is selected
             JOptionPane.showMessageDialog(this, "Selecione uma pessoa para editar.");
         }
     }//GEN-LAST:event_btnEditarPessoaActionPerformed
@@ -235,42 +235,22 @@ public class TelaPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverPessoaActionPerformed
 
     private void cmbVinculoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVinculoPessoaActionPerformed
+        String termo = txtBuscaNome.getText();
         VinculoPessoa vinculoSelecionado = (VinculoPessoa) cmbVinculoPessoa.getSelectedItem();
-        buscarPessoasPorVinculo(vinculoSelecionado);
+
+        buscarPessoas(termo, vinculoSelecionado);
     }//GEN-LAST:event_cmbVinculoPessoaActionPerformed
 
     private void txtBuscaNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaNomeKeyReleased
-        buscarPessoas(txtBuscaNome.getText());
+        String termo = txtBuscaNome.getText();
+        VinculoPessoa vinculoSelecionado = (VinculoPessoa) cmbVinculoPessoa.getSelectedItem();
+
+        buscarPessoas(termo, vinculoSelecionado);
     }//GEN-LAST:event_txtBuscaNomeKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaPessoa().setVisible(true);
@@ -305,27 +285,32 @@ public class TelaPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField txtBuscaNome;
     // End of variables declaration//GEN-END:variables
 
-    public void buscarPessoas(String termo) {
+    public void buscarPessoas(String termo, VinculoPessoa vinculoSelecionado) {
         jpa.conexaoAberta();
-        
+
         DefaultListModel modeloLista = new DefaultListModel();
-        
-        for(Pessoa pessoa : jpa.getPessoas()) {
-            if (pessoa.getNome().toLowerCase().contains(termo.toLowerCase())) {
+
+        for (Pessoa pessoa : jpa.getPessoas()) {
+            boolean nomeCerto = pessoa.getNome().toLowerCase().contains(termo.toLowerCase());
+            boolean vinculoCerto = (vinculoSelecionado == null) || pessoa.getVinculoPessoa() == vinculoSelecionado;
+
+            if (nomeCerto && vinculoCerto) {
                 modeloLista.addElement(pessoa);
             }
+
+            lstPessoas.setModel(modeloLista);
+            jpa.fecharConexao();
         }
-        
-        lstPessoas.setModel(modeloLista);
-        
-        jpa.fecharConexao();
     }
 
+    
+    
+    /*
     private void buscarPessoasPorVinculo(VinculoPessoa vinculoSelecionado) {
         jpa.conexaoAberta();
-        
+
         DefaultListModel modeloLista = new DefaultListModel();
-        
+
         for (Pessoa pessoa : jpa.getPessoas()) {
             if (pessoa.getVinculoPessoa() == vinculoSelecionado) {
                 modeloLista.addElement(pessoa);
@@ -334,5 +319,5 @@ public class TelaPessoa extends javax.swing.JFrame {
         lstPessoas.setModel(modeloLista);
         jpa.fecharConexao();
     }
-
+   */
 }
