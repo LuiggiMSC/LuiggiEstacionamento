@@ -101,7 +101,7 @@ public class Veiculo implements Serializable {
     public void addMovimentacao(EntradaSaida movimentacao){
         listaMovimentacoes.add(movimentacao);
     }
-
+//
     public Modelo getModelo() {
         return modelo;
     }
@@ -113,15 +113,15 @@ public class Veiculo implements Serializable {
     public Pessoa getProprietario() {
         return proprietario;
     }
-
+//
     public void setProprietario(Pessoa proprietario) {
         this.proprietario = proprietario;
     }
-
+//
     public List<EntradaSaida> getListaMovimentacoes() {
         return listaMovimentacoes;
     }
-   
+//    
     
     
 }

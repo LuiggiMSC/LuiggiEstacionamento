@@ -24,6 +24,9 @@ public class TesteConexao {
         jpa.fecharConexao();
     }
 
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
     @Test
     public void testeConexao() {
         System.out.println("Conexão realizada com sucesso");
