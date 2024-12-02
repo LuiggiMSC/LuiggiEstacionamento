@@ -29,9 +29,9 @@ public class TelaSobre extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setText("Sistema de Controle de Estacionamento IFSUL");
 
-        jLabel2.setText("<html> <p> Estacionamento java </p> </html>");
+        jLabel2.setText("<html>\n<p>\nSistema de Controle de Estacionamento implementado na disciplina de LPOO como aprendizado de Programação Visual usando persistência em Banco de Dados e linguagem de programação Java.\n</p>\n</html>");
 
-        jLabel3.setText("Luiggi Mathew Scortegagna");
+        jLabel3.setText("Profª Vanessa Lago Machado");
 
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
