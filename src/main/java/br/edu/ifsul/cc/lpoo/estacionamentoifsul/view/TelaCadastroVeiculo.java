@@ -9,6 +9,14 @@ import model.TipoVeiculo;
 import model.VeiOficial;
 import model.Veiculo;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
+/**
+ *
+ * @author vanessalagomachado
+ */
 public class TelaCadastroVeiculo extends javax.swing.JDialog {
 
     private Veiculo veiculo;

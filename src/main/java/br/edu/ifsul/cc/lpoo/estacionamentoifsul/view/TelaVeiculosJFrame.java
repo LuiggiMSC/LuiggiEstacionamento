@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package br.edu.ifsul.cc.lpoo.estacionamentoifsul.view;
 
 import br.edu.ifsul.cc.lpoo.estacionamentoifsul.lpoo_sistemaestacionamentoifsul.dao.PersistenciaJPA;
@@ -10,6 +14,10 @@ import javax.swing.table.TableModel;
 import model.VeiOficial;
 import model.Veiculo;
 
+/**
+ *
+ * @author vanessalagomachado
+ */
 public class TelaVeiculosJFrame extends javax.swing.JFrame {
 
     PersistenciaJPA jpa = new PersistenciaJPA();

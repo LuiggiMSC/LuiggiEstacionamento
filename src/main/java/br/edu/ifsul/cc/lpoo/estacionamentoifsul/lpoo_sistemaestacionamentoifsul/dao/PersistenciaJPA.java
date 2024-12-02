@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package br.edu.ifsul.cc.lpoo.estacionamentoifsul.lpoo_sistemaestacionamentoifsul.dao;
 
 import java.util.ArrayList;
@@ -17,6 +21,10 @@ import model.Pessoa;
 import model.Veiculo;
 import model.VinculoPessoa;
 
+/**
+ *
+ * @author vanessalagomachado
+ */
 public class PersistenciaJPA implements InterfaceBD {
 
     EntityManager entity;

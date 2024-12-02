@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package br.edu.ifsul.cc.lpoo.estacionamentoifsul.view;
 
 import br.edu.ifsul.cc.lpoo.estacionamentoifsul.lpoo_sistemaestacionamentoifsul.dao.PersistenciaJPA;
@@ -8,6 +12,10 @@ import javax.swing.JOptionPane;
 import model.Pessoa;
 import model.VinculoPessoa;
 
+/**
+ *
+ * @author vanessalagomachado
+ */
 public class TelaPessoa extends javax.swing.JFrame {
 
     PersistenciaJPA jpa;

@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package br.edu.ifsul.cc.lpoo.estacionamentoifsul.view;
 
 import br.edu.ifsul.cc.lpoo.estacionamentoifsul.lpoo_sistemaestacionamentoifsul.dao.PersistenciaJPA;
@@ -6,6 +10,10 @@ import java.util.logging.Logger;
 import model.Marca;
 import model.Modelo;
 
+/**
+ *
+ * @author vanessalagomachado
+ */
 public class TelaCadastroModelos extends javax.swing.JDialog {
     PersistenciaJPA jpa = new PersistenciaJPA();
     /**
