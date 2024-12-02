@@ -3,8 +3,8 @@
     <persistence-unit name="pu_lpoo_estacionamento" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bd_lpoo_estacionamentoifsul"/>
-            <property name="javax.persistence.jdbc.user" value="vanessalagomachado"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/ProjetoLPOOE1_LuiggiMathewScortegagna/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.password" value="postgres"/>
             <property name="javax.persistence.schema-generation.database.action" value="update"/>

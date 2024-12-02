@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package br.edu.ifsul.cc.lpoo.estacionamentoifsul.view;
 
-/**
- *
- * @author vanessalagomachado
- */
 public class TelaSobre extends javax.swing.JDialog {
 
     /**

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package br.edu.ifsul.cc.lpoo.estacionamentoifsul.view;
 
 import br.edu.ifsul.cc.lpoo.estacionamentoifsul.lpoo_sistemaestacionamentoifsul.dao.PersistenciaJPA;
@@ -10,10 +6,6 @@ import java.util.logging.Logger;
 import model.Pessoa;
 import model.VinculoPessoa;
 
-/**
- *
- * @author vanessalagomachado
- */
 public class TelaCadastroPessoa extends javax.swing.JDialog {
 
     private Pessoa pessoa;
